@@ -4,16 +4,17 @@ const mongoose = require('mongoose');
 const app = express();
 
 const ExpressError = require('./Utils/ExpressError');
+require('dotenv').config();
 
 async function mian() {
-    mongoose.connect('mongodb://127.0.0.1:27017/gbot');
+    mongoose.connect(`${process.env.MONGO_URL}`);
 }
 mian().then(() => {
     console.log("connected to DB");
 }).catch((err) => {
     console.log(err);
 })
-require('dotenv').config();
+
 const cors = require('cors');
 const authRoute = require('./Routes/authRoute');
 //1 Middle wares
