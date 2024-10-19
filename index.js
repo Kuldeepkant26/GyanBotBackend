@@ -17,6 +17,7 @@ mian().then(() => {
 
 const cors = require('cors');
 const authRoute = require('./Routes/authRoute');
+const postRoute = require('./Routes/postRoute');
 //1 Middle wares
 app.use(cors());
 app.use(express.json());
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
     res.send("Routes are working");
 })
 app.use('/api/auth', authRoute);
+app.use('/api/posts', postRoute);
 
 
 app.use((err, req, res, next) => {

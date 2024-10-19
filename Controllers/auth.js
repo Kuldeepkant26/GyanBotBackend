@@ -61,7 +61,7 @@ exports.getuserController = async (req, res) => {
         const authHeader = req.headers['authorization'];
         const token = authHeader.split(' ')[1];
         const decode = jwt.decode(token);
-        const user = await Users.findById({ _id: decode.U_id })
+        const user = await Users.findById({ _id: decode.U_id }).populate({ path: 'posts' })
         return res.status(201).json({
             success: true,
             message: "user data fetched successfully",

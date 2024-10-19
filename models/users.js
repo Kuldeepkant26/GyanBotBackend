@@ -26,7 +26,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Customer", // Fix typo from "Costumer"
         enum: ['Admin', 'Customer'] // Restrict role values
-    }
+    },
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Posts"
+        }
+    ]
 }, { timestamps: true }); // Automatically add createdAt and updatedAt fields
 
 module.exports = mongoose.model('Users', userSchema);
